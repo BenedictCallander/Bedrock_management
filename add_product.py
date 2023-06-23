@@ -20,7 +20,7 @@ class add_product:
     def product_window():
         prodwin=CTkToplevel()
         prodwin.configure(fg_color="#2E2E2E")
-        options_in= pd.read_csv("requisites/products.csv")
+        options_in= pd.read_csv("bedrockdata/products.csv")
         names=list(options_in['Name'])
         product_ids=list(options_in['ID'])
         
@@ -58,7 +58,7 @@ class add_product:
             stor_type=stortyp.get()
             sys_info={"ID":prod_id, "CPU": cpu_info,"gen": ram_gen, "RAM":raminfo , "GPU": gpu_info, "storage":stor_cap, "Dtype":stor_type}
             data=pd.DataFrame(sys_info, index=[0])
-            data.to_csv(f"requisites/systems/{prod_id}.csv", index=False)
+            data.to_csv(f"bedrockdata/systems/{prod_id}.csv", index=False)
             
             entry_CPU.delete(0,END)
             entry_GPU.delete(0,END)

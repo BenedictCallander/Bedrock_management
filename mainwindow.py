@@ -3,7 +3,7 @@ from tkinter import *
 from tkinter import ttk
 import pandas as pd 
 import datetime 
-#import BCUTILS
+
 '''
 colours
 background: bedrock dark gray "#2E2E2E"
@@ -18,7 +18,7 @@ other imports
 '''
 import frontend_components
 from add_product import add_product
-
+import order_manager
 def main(): 
     win = CTk()
     win.geometry("1280x720")
@@ -43,12 +43,11 @@ def main():
 
     button1 = CTkButton(buttonframe, text="Add New Components", command=frontend_components.main,
     fg_color=button_fg,border_color="#72c05b",hover_color="#72c05b", height=100, width=200,corner_radius= 50) 
-    #button 2-> used system import 
-    #file input? Manual input for now
-    button2 = CTkButton(buttonframe, text="Import System", command=add_product.product_window,
+    
+    button2 = CTkButton(buttonframe, text="Configure Shop Product", command=add_product.product_window,
     fg_color=button_fg,border_color="#72c05b",hover_color="#72c05b", height=100, width=200, corner_radius= 50) 
 
-    button3 = CTkButton(buttonframe, text="Add Accesories",
+    button3 = CTkButton(buttonframe, text="Order Manager", command=order_manager.main,
     fg_color=button_fg,border_color="#72c05b",hover_color="#72c05b", height=100, width=200, corner_radius= 50)
 
     button4 = CTkButton(buttonframe, text="Adjust Stock Price",
