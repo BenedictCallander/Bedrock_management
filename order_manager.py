@@ -2,7 +2,7 @@ import os
 import shutil
 from customtkinter import *
 from tkinter import *
-
+from order_compile import order_compile
 # Color configurations
 bg_color = "#2E2E2E"
 text_color = "#f37367"
@@ -76,6 +76,8 @@ class FileManager:
 
     def accept_file(self):
         file_name = self.pending_frame.get_selected_file()
+        order_id = int(file_name.split('.')[0])
+        order_compile.compile_order(order_id)
         shutil.move(os.path.join(self.pending_frame.directory, file_name), self.received_frame.directory)
         self.pending_frame.remove_selected_file()
         self.pending_frame.clear_content()

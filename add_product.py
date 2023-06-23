@@ -2,9 +2,6 @@ from tkinter import *
 from tkinter import ttk
 from customtkinter import * 
 import pandas as pd 
-#import numpy as np
-#import components as components 
-#import BCUTILS
 from tkinter import messagebox
 import sqlite3
 import matplotlib.pyplot as plt

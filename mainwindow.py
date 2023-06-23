@@ -19,6 +19,8 @@ other imports
 import frontend_components
 from add_product import add_product
 import order_manager
+import stock_viewer
+import table_edit
 def main(): 
     win = CTk()
     win.geometry("1280x720")
@@ -28,7 +30,7 @@ def main():
     titleframe.configure(fg_color="#2E2E2E")
     titleframe.grid(row=0, column=0)
     win.iconbitmap('datafiles/icon.ico')
-    #BCUTILS.plot_psu()
+    
     titleimg = PhotoImage(file="datafiles/bedrock.png")
     logotitle = Label(titleframe, image = titleimg,bg = "#2E2E2E")
     logotitle.grid(row=0, column= 0)
@@ -50,10 +52,10 @@ def main():
     button3 = CTkButton(buttonframe, text="Order Manager", command=order_manager.main,
     fg_color=button_fg,border_color="#72c05b",hover_color="#72c05b", height=100, width=200, corner_radius= 50)
 
-    button4 = CTkButton(buttonframe, text="Adjust Stock Price",
+    button4 = CTkButton(buttonframe, text="View Stock", command=stock_viewer.main,
     fg_color=button_fg,border_color="#72c05b",hover_color="#72c05b", height=100, width=200,corner_radius= 50)  
 
-    button5 = CTkButton(buttonframe, text="Stock Dashboard",
+    button5 = CTkButton(buttonframe, text="Stock Dashboard", command=table_edit.launch_stock_database_app,
     fg_color=button_fg,border_color="#72c05b",hover_color="#72c05b", height=100, width=200, corner_radius= 50)
 
     button6 = CTkButton(buttonframe, text="Get Orders",
@@ -95,3 +97,5 @@ def main():
     exit()
 
 main()
+
+
