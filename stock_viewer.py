@@ -45,9 +45,15 @@ class DatabaseViewer:
         self.root.grid_columnconfigure(0, weight=1)
         self.root.grid_rowconfigure(0, weight=1)
 
-def main():
+def main_stock():
     root = Toplevel()
     root.title("BEDROCK:Database Viewer")
     app = DatabaseViewer(root, 'bedrockdata/stock.db')
+    root.mainloop()
+
+def main_backup():
+    root = Toplevel()
+    root.title("BEDROCK:Database Viewer")
+    app = DatabaseViewer(root, 'bedrockdata/stock_backup.db')
     root.mainloop()
 

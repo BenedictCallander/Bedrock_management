@@ -15,8 +15,9 @@ foreground/accent: bedrock orange "#f37367"
 '''
 class add_product:
     def product_window():
-        prodwin=CTkToplevel()
-        prodwin.configure(fg_color="#2E2E2E")
+        prodwin=Toplevel()
+        prodwin.config(bg="#2E2E2E")
+        prodwin.iconbitmap("datafiles/icon.ico")
         options_in= pd.read_csv("bedrockdata/products.csv")
         names=list(options_in['Name'])
         product_ids=list(options_in['ID'])

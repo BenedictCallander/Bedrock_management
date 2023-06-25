@@ -3,7 +3,8 @@ from tkinter import *
 from tkinter import ttk
 import pandas as pd 
 import datetime 
-
+import BCUTILS
+from BCUTILS import backup
 '''
 colours
 background: bedrock dark gray "#2E2E2E"
@@ -30,7 +31,7 @@ def main():
     titleframe.configure(fg_color="#2E2E2E")
     titleframe.grid(row=0, column=0)
     win.iconbitmap('datafiles/icon.ico')
-    
+    backup.create_backup()
     titleimg = PhotoImage(file="datafiles/bedrock.png")
     logotitle = Label(titleframe, image = titleimg,bg = "#2E2E2E")
     logotitle.grid(row=0, column= 0)
@@ -52,21 +53,21 @@ def main():
     button3 = CTkButton(buttonframe, text="Order Manager", command=order_manager.main,
     fg_color=button_fg,border_color="#72c05b",hover_color="#72c05b", height=100, width=200, corner_radius= 50)
 
-    button4 = CTkButton(buttonframe, text="View Stock", command=stock_viewer.main,
+    button4 = CTkButton(buttonframe, text="View Current Stock", command=stock_viewer.main_stock,
     fg_color=button_fg,border_color="#72c05b",hover_color="#72c05b", height=100, width=200,corner_radius= 50)  
 
-    button5 = CTkButton(buttonframe, text="Stock Dashboard", command=table_edit.launch_stock_database_app,
+    button5 = CTkButton(buttonframe, text="Stock Dashboard", command=stock_viewer.main_backup,
     fg_color=button_fg,border_color="#72c05b",hover_color="#72c05b", height=100, width=200, corner_radius= 50)
 
-    button6 = CTkButton(buttonframe, text="Get Orders",
+    button6 = CTkButton(buttonframe, text="Manage Database",command=table_edit.launch_stock_database_app,
     fg_color=button_fg,border_color="#72c05b",hover_color="#72c05b", height=100, width=200, corner_radius= 50) 
 
     button7 = CTkButton(buttonframe, text="View Accessories",
     fg_color=button_fg,border_color="#72c05b",hover_color="#72c05b",height=100, width=200, corner_radius= 50)
 
-    button8 = CTkButton(buttonframe, text="Backup Database",
+    button8 = CTkButton(buttonframe, text="Backup Database", command=BCUTILS.backup.create_backup,
     fg_color=button_fg,border_color="#72c05b",hover_color="#72c05b", height=100, width=200, corner_radius= 50) 
-    
+    '''
     button9 = CTkButton(buttonframe, text="Add Product (ADMIN)",
     fg_color=button_fg,border_color="#72c05b",hover_color="#72c05b", height=100, width=200, corner_radius= 50) 
     
@@ -78,6 +79,7 @@ def main():
     
     button12 = CTkButton(buttonframe, text="AButton",
     fg_color=button_fg,border_color="#72c05b",hover_color="#72c05b", height=100, width=200, corner_radius= 50) 
+    '''
     
     
     button1.grid(row=4, column= 0,padx=15, pady=15)
@@ -88,10 +90,12 @@ def main():
     button6.grid(row=5, column=1,padx=15, pady=15)
     button7.grid(row=5, column=2,padx=15, pady=15)
     button8.grid(row=5, column=3,padx=15, pady=15)
+    '''
     button9.grid(row=6, column=0, padx=15, pady=15)
     button10.grid(row=6, column=1, padx=15, pady=15)
     button11.grid(row=6, column=2, padx=15, pady=15)
     button12.grid(row=6, column=3, padx=15, pady=15)
+    '''
 
     win.mainloop()
     exit()
