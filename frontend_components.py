@@ -18,10 +18,10 @@ def get_data_from_db(table_name, name_column):
     cursor.execute(f"SELECT {name_column} FROM {table_name}")
     return cursor.fetchall()
 
-def add_components(window, table_name, name_column):
+def add_components(window,wingeo, table_name, name_column):
     window.destroy()
     window = Toplevel()
-    window.geometry('1280x720')
+    window.geometry(wingeo)
     window.config(bg="#2E2E2E")
     window.iconbitmap("datafiles/icon.ico")
     data = get_data_from_db(table_name, name_column)
@@ -80,7 +80,7 @@ def main(window=None):
         fg_color="#f37367",
         hover_color="#72c05b",
         width=150,height=50, corner_radius=20,
-        command=lambda: add_components(window, 'GPU', 'name')
+        command=lambda: add_components(window,'1280x720', 'GPU', 'name')
     ).grid(row=1, column=0, padx=5, pady=5)
 
     CTkButton(
@@ -89,7 +89,7 @@ def main(window=None):
         fg_color="#f37367",
         hover_color="#72c05b",
         width=150,height=50, corner_radius=20,
-        command=lambda: add_components(window, 'CPU', 'name')
+        command=lambda: add_components(window,'1280x720', 'CPU', 'name')
     ).grid(row=1, column=1, padx=5, pady=5)
 
     CTkButton(
@@ -98,8 +98,25 @@ def main(window=None):
         fg_color="#f37367",
         hover_color="#72c05b",
         width=150,height=50, corner_radius=20,
-        command=lambda: add_components(window, 'PSU', 'power')
+        command=lambda: add_components(window,'1280x720', 'PSU', 'power')
     ).grid(row=1, column=2, padx=5, pady=5)
 
+    CTkButton(
+        window,
+        text='DDR3 RAM',
+        fg_color="#f37367",
+        hover_color="#72c05b",
+        width=150,height=50, corner_radius=20,
+        command=lambda: add_components(window,'500x500', 'ddr3', 'Capacity')
+    ).grid(row=2, column=0, padx=5, pady=5)
+
+    CTkButton(
+        window,
+        text='DDR4 RAM',
+        fg_color="#f37367",
+        hover_color="#72c05b",
+        width=150,height=50, corner_radius=20,
+        command=lambda: add_components(window,'500x500', 'ddr4', 'Capacity')
+    ).grid(row=2, column=1, padx=5, pady=5)
     window.mainloop()
 

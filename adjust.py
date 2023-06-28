@@ -86,4 +86,3 @@ class TableFrame(tk.Frame):
 def runwin():
     app = Application()
     app.mainloop()
-runwin()

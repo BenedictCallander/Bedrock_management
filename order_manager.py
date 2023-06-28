@@ -68,7 +68,7 @@ class FileManager:
 
         self.pending_frame.grid(row=0, column=0, sticky="nsew")
         self.received_frame.grid(row=0, column=1, sticky="nsew")
-        self.processing_frame.grid(row=0, column=2, sticky="nsew")
+        self.processing_frame.grid(row=1, column=0, sticky="nsew")
 
         self.root.grid_columnconfigure(0, weight=1)
         self.root.grid_columnconfigure(1, weight=1)
