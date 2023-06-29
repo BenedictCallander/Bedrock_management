@@ -3,6 +3,7 @@ import shutil
 from customtkinter import *
 from tkinter import *
 from order_compile import order_compile
+from order_compile import order_get
 # Color configurations
 bg_color = "#2E2E2E"
 text_color = "#f37367"
@@ -97,6 +98,7 @@ class FileManager:
         self.processing_frame.clear_content()
 
 def main():
+    order_get.process_orders()
     root = Toplevel()
     root.iconbitmap("datafiles/icon.ico")
     root.title("BEDROCK: Order Manager")

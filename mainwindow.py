@@ -99,7 +99,7 @@ def main():
     '''
 
     win.mainloop()
-    exit()
+
 
 main()
 
