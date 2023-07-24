@@ -17,12 +17,14 @@ consumer_secret = "cs_d40131313ebeeb4e1bd8b8fb67e41afd487685cf"
 # Create the directory for storing order files
 output_dir = 'orders/archive'
 received_dir='orders/pending'
+speedy_dir='orders/speedy'
+
 os.makedirs(output_dir, exist_ok=True)
 
 class order_get:
     def process_orders():
         # Calculate the date and time 24 hours ago
-        start_date = datetime.now() - timedelta(hours=24)
+        start_date = datetime.now() - timedelta(hours=48)
 
         # Format the start date as required by the WooCommerce API
         start_date_formatted = start_date.strftime('%Y-%m-%dT%H:%M:%S')
@@ -44,6 +46,7 @@ class order_get:
             order_id = order['id']
             output_file = os.path.join(output_dir, f"{order_id}.txt")
             output_file_received = os.path.join(received_dir, f"{order_id}.txt")
+            output_file_speedy = os.path.join(speedy_dir, f"{order_id}.txt")
 
             # Skip if the order file already exists
             if os.path.exists(output_file):
@@ -51,29 +54,49 @@ class order_get:
 
             line_items = order['line_items']
             order_details = []
-
+            customer=order['shipping']
+            fullname = str(customer['first_name']) + ' ' + str(customer['last_name'])
+            shipping_lines = order['shipping_lines']
+            
+            
+            method_titles = []
+#10549, 'method_title': 'Speedy Delivery:
+#10560, 'method_title': 'Free Shipping
             for item in line_items:
                 product_name = item['name']
                 product_id=item['product_id']
                 additions = item.get('meta_data', [])
-
+            
+                method_titles = [line.get("method_title", "") for line in shipping_lines][0]   
+                method_id=[line.get("method_id","") for line in shipping_lines]
+                
                 # Filter out metadata starting with '_'
                 filtered_additions = [a for a in additions if not a['key'].startswith('_')]
-
-                addition_text = ''.join([f"{a['key']}: {a['value']}\n" for a in filtered_additions])
-
-                # Format the order details
-                order_details.append(f"Product Name: {product_name}")
-                order_details.append(f"Product ID:{product_id} sss")
-                order_details.append(f"Additions: {addition_text}")
+                filt2=[]
+                for a in filtered_additions:
+                    value=a.get('value')
+                    if not (isinstance(value, str) and value.startswith(("None","No"))):
+                        filt2.append(a)
+                 
                 
-
+                addition_text = ''.join([f"{a['key']}: {str(a['value']).split('|',1)[0].strip()}\n" for a in filt2])
+                
+                
+                # Format the order details
+                order_details.append(f"order ID: {order_id}, customer {fullname} \n \n ")
+                order_details.append(f"Shipping Method:  {method_titles}\n")
+                order_details.append(f"Product Name: {product_name}")
+                order_details.append(f"Product ID:{product_id} sss \n \n ")
+                order_details.append(f"Additions:\n {addition_text}")
+                
             # Write the order details to the file
             with open(output_file, 'w') as file:
                 file.write('\n'.join(order_details))
             with open(output_file_received, 'w') as file:
                 file.write('\n'.join(order_details))
-
+            if method_id[0] =="flat_rate":
+                with open(output_file_speedy, 'w') as file:
+                    file.write('\n'.join(order_details))
 
 
 class order_compile:

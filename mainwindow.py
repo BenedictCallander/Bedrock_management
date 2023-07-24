@@ -44,7 +44,6 @@ def main():
     hvcol="#72c05b"
     button_fg = "#de6210"
 
-
     button1 = CTkButton(buttonframe, text="Add New Components", command=frontend_components.main,
     fg_color=button_fg,border_color="#72c05b",hover_color="#72c05b", height=100, width=200,corner_radius= 50) 
     

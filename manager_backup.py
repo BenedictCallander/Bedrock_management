@@ -13,7 +13,7 @@ class DirectoryFrame(Frame):
         super().__init__(master, bg=bg_color)
         self.directory = directory
 
-        self.title = Label(self, text=title, bg=bg_color, fg=text_color, font="Arial, 20")
+        self.title = Label(self, text=title, bg=bg_color, fg=text_color)
         self.title.grid(row=0, column=0, sticky="nsew")
 
         self.file_list = Listbox(self, bg=bg_color, fg=text_color)
@@ -66,7 +66,7 @@ class FileManager:
         self.pending_frame = DirectoryFrame(root, "orders/pending", "Pending", "Accept", self.accept_file)
         self.received_frame = DirectoryFrame(root, "orders/received", "Received", "Processing", self.process_file)
         self.processing_frame = DirectoryFrame(root, "orders/processing", "Processing", "Complete", self.complete_file)
-        self.speedy_frame = DirectoryFrame(root, "orders/speedy", "Speedy","delete file", self.delete_file)
+        self.speedy_frame = DirectoryFrame(root, "orders/speedy", "Speedy")
         
         self.pending_frame.grid(row=0, column=0, sticky="nsew")
         self.received_frame.grid(row=0, column=1, sticky="nsew")
@@ -99,13 +99,6 @@ class FileManager:
         shutil.move(os.path.join(self.processing_frame.directory, file_name), "orders/complete")
         self.processing_frame.remove_selected_file()
         self.processing_frame.clear_content()
-    def delete_file(self):
-        selected_file = self.speedy_frame.get_selected_file()
-        if selected_file:
-            file_path = os.path.join(self.speedy_frame.directory, selected_file)
-            os.remove(file_path)
-            self.speedy_frame.clear_content()
-            self.speedy_frame.populate_files()
 
 def main():
     order_get.process_orders()
