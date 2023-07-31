@@ -4,7 +4,7 @@ from tkinter import Toplevel, Frame, simpledialog, messagebox
 from customtkinter import *
 from math import isqrt
 '''
-colours
+Branded Colours
 background: bedrock dark gray "#2E2E2E"
 hover: bedrock green "#72c05b"
 foreground/accent: bedrock orange "#f37367"

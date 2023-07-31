@@ -3,27 +3,36 @@ from tkinter import *
 from tkinter import ttk
 import pandas as pd 
 import datetime 
-import BCUTILS
-from BCUTILS import backup
-import adjust
 '''
-colours
+Branded Colours
 background: bedrock dark gray "#2E2E2E"
 hover: bedrock green "#72c05b"
 foreground/accent: bedrock orange "#f37367"
 '''
+#define branded colours for repeated use in formatting of elements
 bedrock_green= "#72c05b"
 bedrock_orange= "#f37367"
 bedrock_gray="#2E2E2E"
-'''
-other imports
-'''
-import frontend_components
+
+# Custom module imports to provide functionality to each secondary window
+
+
+
+import adjust
 from add_product import add_product
+from BCUTILS import backup
+import BCUTILS
+import frontend_components
 import order_manager
 import stock_viewer
 import table_edit
+
+
 def main(): 
+    r'''
+    Function containing main window Tkinter GUI: includes 8 buttons linking to each main function 
+    of software 
+    '''
     win = CTk()
     win.geometry("1280x720")
     win.configure(fg_color="#2E2E2E")
@@ -43,6 +52,9 @@ def main():
     buttonframe.grid(row=1, column=0, pady=50)
     hvcol="#72c05b"
     button_fg = "#de6210"
+
+    #create button objects and provide necessary formatting and commands
+
 
     button1 = CTkButton(buttonframe, text="Add New Components", command=frontend_components.main,
     fg_color=button_fg,border_color="#72c05b",hover_color="#72c05b", height=100, width=200,corner_radius= 50) 
@@ -67,20 +79,9 @@ def main():
 
     button8 = CTkButton(buttonframe, text="Backup Database", command=BCUTILS.backup.create_backup,
     fg_color=button_fg,border_color="#72c05b",hover_color="#72c05b", height=100, width=200, corner_radius= 50) 
-    '''
-    button9 = CTkButton(buttonframe, text="Add Product (ADMIN)",
-    fg_color=button_fg,border_color="#72c05b",hover_color="#72c05b", height=100, width=200, corner_radius= 50) 
     
-    button10 = CTkButton(buttonframe, text="AButton",
-    fg_color=button_fg,border_color="#72c05b",hover_color="#72c05b", height=100, width=200, corner_radius= 50) 
-    
-    button11 = CTkButton(buttonframe, text="AButton",
-    fg_color=button_fg,border_color="#72c05b",hover_color="#72c05b", height=100, width=200, corner_radius= 50) 
-    
-    button12 = CTkButton(buttonframe, text="AButton",
-    fg_color=button_fg,border_color="#72c05b",hover_color="#72c05b", height=100, width=200, corner_radius= 50) 
-    '''
-    
+
+    #manually arange button placement on home screen for accessible visual interface. 
     
     button1.grid(row=4, column= 0,padx=15, pady=15)
     button2.grid(row=4, column=1,padx=15, pady=15)
@@ -90,12 +91,7 @@ def main():
     button6.grid(row=5, column=1,padx=15, pady=15)
     button7.grid(row=5, column=2,padx=15, pady=15)
     button8.grid(row=5, column=3,padx=15, pady=15)
-    '''
-    button9.grid(row=6, column=0, padx=15, pady=15)
-    button10.grid(row=6, column=1, padx=15, pady=15)
-    button11.grid(row=6, column=2, padx=15, pady=15)
-    button12.grid(row=6, column=3, padx=15, pady=15)
-    '''
+    
 
     win.mainloop()
 
